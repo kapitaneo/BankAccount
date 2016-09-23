@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Вход в систему";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Вход в систему</h2>
+@using (Html.BeginForm("Enter", "Home", FormMethod.Post))
+{
+    <p>Введите свой email: </p>
+    @Html.TextBox("Email");
+    @Html.ValidationMessage("Email");
+    <p>Введите свой пароль: </p>
+    @Html.Password("Password");
+    @Html.ValidationMessage("Password");
+    <p><input type="submit" value="Войти" /></p>
+    <p>@Html.ActionLink("Регистрация", "Regist")</p>
+}
+

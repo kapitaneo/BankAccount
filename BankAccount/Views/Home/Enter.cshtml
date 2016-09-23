@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Enter";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    BankAccount.Models.Account account = (BankAccount.Models.Account)Session["User"];
+}
+
+<h2>Ваш аккаунт</h2>
+<h3>Ваш баланс</h3>
+<p>@account.Balance Uah</p>
+@Html.ActionLink("Exit", "Exit")
+

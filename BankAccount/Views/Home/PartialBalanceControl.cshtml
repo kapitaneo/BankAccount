@@ -1,0 +1,29 @@
+﻿@using System.Web.Optimization
+<h2>Управление балансами пользователей</h2>
+@Ajax.ActionLink("Журнал пополнений", "Journalofrefill", new AjaxOptions {UpdateTargetId="result"})
+<p>Email @using (Ajax.BeginForm("Emailsearch", new AjaxOptions { UpdateTargetId = "table" }))
+{
+    <input type="text" name="Email" />
+    <input type="submit" value="Поиск" />
+}
+<table id="table"></table>
+    <script type="text/javascript">
+     $(document).ready(function () {
+       $("#table").jqGrid({
+        url: '@Url.Action("GetData")',
+        datatype: "json",
+        colNames: ['Email', 'Баланс', 'Дата регистрации'],
+        colModel: [
+        { name: 'Email', index: 'Email', width: 150, sortable: true },
+        { name: 'Balance', index: 'Balance', width: 70, sortable:false},
+        { name: 'DateofRegistration', index: 'DateofRegistration', width: 150, sortable: false }
+        ],
+        rowNum: 10, // число отображаемых строк
+        loadonce: true, // загрузка только один раз
+        sortname: 'Email', // сортировка по умолчанию
+        sortorder: "desc", // порядок сортировки
+        caption: "Users"
+    });
+});
+    </script> 
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
